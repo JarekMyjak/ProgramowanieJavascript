@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrumKit</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="audioFiles">
+            <audio src="./sounds/boom.wav" id="boom"></audio>
+            <audio src="./sounds/clap.wav" id="clap"></audio>
+            <audio src="./sounds/hihat.wav" id="hihat"></audio>
+            <audio src="./sounds/kick.wav" id="kick"></audio>
+            <audio src="./sounds/openhat.wav" id="openhat"></audio>
+            <audio src="./sounds/ride.wav" id="ride"></audio>
+            <audio src="./sounds/snare.wav" id="snare"></audio>
+            <audio src="./sounds/tink.wav" id="tink"></audio>
+            <audio src="./sounds/tom.wav" id="tom"></audio>
+        </div>
+
+        <div class="track row">
+            <div class="col s1">
+                <div class="switch">
+                    <label>
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col s1">
+                <a class="waves-effect red waves-light btn-small recordBtn">
+                    <i class="material-icons">radio_button_checked</i>
+                </a>
+            </div>
+
+            <div class="col s1">
+                <a class="waves-effect green waves-light btn-small playBtn">
+                    <i class="material-icons">play_arrow</i>
+                </a>
+            </div>
+
+            <div class="col s9">
+                <input type="range" disabled value="0" name="recording" id="">
+            </div>
+        </div>
+        <div class="track row">
+            <div class="col s1">
+                <div class="switch">
+                    <label>
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col s1">
+                <a class="waves-effect red waves-light btn-small recordBtn">
+                    <i class="material-icons">radio_button_checked</i>
+                </a>
+            </div>
+
+            <div class="col s1">
+                <a class="waves-effect green waves-light btn-small playBtn">
+                    <i class="material-icons">play_arrow</i>
+                </a>
+            </div>
+            
+            <div class="col s9">
+                <input type="range" disabled value="0" name="recording" id="">
+            </div>
+        </div>
+
+
+
+        <a id="stopRecord" class="waves-effect waves-light btn-small">stop Recording</a>
+        <a id="playAll" class="waves-effect waves-light btn-small">play All</a>
+
+
+    </div>
+
+</body>
+
+</html>
