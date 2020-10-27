@@ -13,7 +13,10 @@ const control = {
     'KeyF': document.querySelector('#tom'),
 }
 const records = []
-let recordingTrack = null;
+let recordingTrack = null
+let recordingTime = 3
+let recordingTimeout
+
 
 document.body.addEventListener('keydown', (e) => {
     playsound(control[e.code])
@@ -36,25 +39,42 @@ const saveSound = (soundNode) => {
     }
 }
 
+const stopRecording = () => {
+    recordingTrack = null
+    clearTimeout(recordingTimeout)
+    document.querySelectorAll(".recordBtn").forEach((element, num) => {
+        element.classList.replace('darken-2','lighten-3')
+    })
+}
+
+const startRecording = (track) => {
+    stopRecording()
+    document.querySelectorAll(".recordBtn")[track].classList.replace('lighten-3','darken-2')
+    records[track] = { start: Date.now(), rec: [] }
+    recordingTrack = track
+
+    recordingTimeout = setTimeout(()=>{
+        stopRecording()
+    },recordingTime*1000)
+}
+
 
 document.querySelectorAll(".recordBtn").forEach((element, num) => {
     element.addEventListener('click', () => {
         if (recordingTrack == num) {
-            recordingTrack = null
+            stopRecording()
         } else {
-            recordedStartTime = Date.now();
-            records[num] = { start: Date.now(), rec: [] }
-            recordingTrack = num
+            startRecording(num)
         }
     })
 })
 
 document.querySelector("#stopRecord").addEventListener('click', () => {
-    recordingTrack = null
+    stopRecording()
 })
 
 document.querySelector("#playAll").addEventListener('click', () => {
-    recordingTrack = null
+    stopRecording()
     records.forEach((track) => {
         track.rec.forEach((soundObj) => {
             setTimeout(() => {
@@ -71,5 +91,8 @@ document.querySelectorAll(".playBtn").forEach((element, num) => {
                 playsound(soundObj.node)
             }, soundObj.offset)
         })
+        console.log('dupa')
+        document.querySelector('.progresBar').style.width = "100%"
+        
     })
 })
