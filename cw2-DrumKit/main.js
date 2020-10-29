@@ -56,7 +56,7 @@ document.body.addEventListener('keydown', (e) => {
     display[e.code].classList.add('pulse')
     setTimeout(()=>{
         display[e.code].classList.remove('pulse')
-    },1000)
+    },300)
 })
 
 const playsound = (soundNode) => {
