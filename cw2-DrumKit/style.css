@@ -1,3 +1,26 @@
-.progresBar {
-    animation-duration: 3s;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "boxes boxes boxes boxes"
+    "boxes boxes boxes boxes"
+    "controls controls controls controls";
+}
+.boxes {
+   grid-area: boxes;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-content: center;
   }
+.controls { grid-area: controls; }
+
+.box{
+  background-color: #26a69a;
+  width: 200px;
+  height: 200px;
+  margin: 7px 7px;
+  border-radius: 5px;
+}
