@@ -15,4 +15,21 @@ notes.push(note)
 
 localStorage.setItem(lsKey, JSON.stringify(notes))
 
-const notesFromLocalStorage = JSON.parse(localStorage.getItem(lsKey))
+const pushNotesToStorage = (notes) => {
+
+}
+
+const getNotesFromStorage = (key) => {
+    const n = JSON.parse(localStorage.getItem(key))
+    n.map((note) => {
+        note.createDate = new Date(note.createDate)
+    })
+}
+
+const renderNote = (note) => {
+    document.createElement('div')
+
+    
+
+
+}
