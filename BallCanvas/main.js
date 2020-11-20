@@ -73,7 +73,13 @@ class ball {
         this.diry += gravity.y
         this.x += this.dirx
         this.y += this.diry
-
+        
+        if (this.x>w || this.x<0) {
+            this.dirx = -this.dirx
+        }
+        if (this.y>h || this.y<0) {
+            this.diry = -this.diry
+        }
     }
 }
 
