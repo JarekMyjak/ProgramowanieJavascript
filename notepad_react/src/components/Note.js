@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import { FormControlLabel, Checkbox, IconButton, CardHeader } from '@material-ui/core';
 
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Grid from '@material-ui/core/Grid'
 import { ColorPickerList } from './ColorPickerList';

@@ -25,7 +25,6 @@ const display = {
     'KeyF': document.querySelector('#b8'),
 }
 
-//const display = document.querySelectorAll('.box')
 
 const records = []
 const progresBars = document.querySelectorAll('.progresBar')
@@ -34,7 +33,6 @@ let recordingTime = 3
 let recordingTimeout
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    //document.querySelectorAll('.progresBar').style.width = "0%"
     progresBars.forEach((bar)=>{
         bar.style.transitionDuration = `${recordingTime}s`
     })

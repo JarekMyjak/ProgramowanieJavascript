@@ -11,17 +11,16 @@ const colors = [
     '#F5E4AC',
     '#FEAD34',
     '#DA3C3D',
-    '#1E0413',
+    '#ffffff',
 ]
 
 export const ColorPickerList = ({ handleColorPick }) => {
-    const [color, setColor] = useState('white')
+    const [color, setColor] = useState('#ffffff')
 
 
     const handleColorChange = (event) => {
         setColor(event.target.value)
         handleColorPick(event.target.value)
-        console.log('dziala1')
     }
 
     return (

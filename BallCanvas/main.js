@@ -17,7 +17,7 @@ mineImg.src = './mine.png'
 
 let faceImg = new Image();
 faceImg.addEventListener('load', function () { }, false);
-faceImg.src = './mine.png'
+faceImg.src = './face.png'
 
 function toRadians(angle) {
     return angle * (Math.PI / 180);
@@ -33,18 +33,16 @@ const handleOrientation = (e) => {
     var x = e.gamma - x0;
     var y = e.beta - y0;
 
-    // Because we don't want to have the device upside down
-    // We constrain the x value to the range [-90,90]
+
     if (y > 90) { y = 90 };
     if (y < -90) { y = -90 };
 
-    // To make computation easier we shift the range of 
-    // x and y to [0,180]
+
     x += 90;
     y += 90;
     gravity.x = -(Math.cos(toRadians(x)) * G).toFixed(2)
     gravity.y = -(Math.cos(toRadians(y)) * G).toFixed(2)
-    //gravity = {xForce,yForce}
+
 
 }
 
@@ -67,8 +65,6 @@ class ball {
         this.x = x
         this.y = y
         this.r = r
-
-
     }
 
     draw = () => {
@@ -77,7 +73,7 @@ class ball {
         ctx.closePath();
         ctx.stroke();
     }
-    move = ( colidersArray ) => {
+    move = () => {
         this.dirx += gravity.x
         this.diry += gravity.y
 
@@ -109,7 +105,8 @@ class ball {
     checkForColisions = (objectArray) => {
         objectArray.forEach((obj) => {
             if (this.intersect(this,obj)) {
-                console.log('kolizja')
+                console.log(obj)
+                obj.onColide();
             }
         })
     }
@@ -127,8 +124,15 @@ class ball {
 class renderer {
     time = 0
     drawableObjects = []
+    allDrawable = () => [this.drawableObjects, ...mines]
     movableObjects = []
-    colidableObjects = []
+    colidableObjects = [];
+
+    mines = []
+
+    addMine = (m) => {
+        this.mines.push(m)
+    }
 
     addObject = (draw, move, colide) => {
         this.drawableObjects.push(draw)
@@ -162,7 +166,7 @@ class Mine {
     x
     y
     r
-    constructor(x = 75, y = 75, r = 13) {
+    constructor(x = 75, y = 75, r = 20) {
         this.x = x
         this.y = y
         this.r = r
@@ -173,6 +177,30 @@ class Mine {
     draw = () => {
         ctx.drawImage(mineImg, (this.x - this.r), (this.y - this.r))
     }
+    onColide = () =>{}
+}
+
+class Goal {
+    x
+    y
+    r
+    constructor(x = w / 2,y = h - 50, r = 13) {
+        this.x = x
+        this.y = y
+        this.r = r
+    }
+    positionSideFlag = false;
+
+    move = () => {}
+
+    draw = () => {
+        ctx.drawImage(faceImg, (this.x - this.r), (this.y - this.r))
+    }
+
+    onColide = () =>{
+        this.y = this.positionSideFlag ? h - 50 : 50;
+        this.positionSideFlag = !this.positionSideFlag
+    }
 }
 
 
@@ -180,9 +208,20 @@ class Mine {
 
 const r = new renderer()
 r.render()
-const b = new ball(w / 2, h / 2, 10)
 
+const b = new ball(w / 2, h / 2, 10)
 r.addObject(b.draw, b.move)
 
-const m = new Mine(w / 2, h / 2)
-r.addObject(m.draw, m.move, m)
+
+for (let i = 0; i < 30; i++) {
+    const m = new Mine(Math.floor(Math.random() * (w-20 - 20) + 20), Math.floor(Math.random() * (h-100 - 100) + 100))
+    r.addObject(m.draw, m.move, m)
+}
+
+
+const g = new Goal()
+r.addObject(g.draw, g.move, g)
+
+const a = new Goal(w / 2, 50)
+r.addObject(a.draw, a.move, a)
+

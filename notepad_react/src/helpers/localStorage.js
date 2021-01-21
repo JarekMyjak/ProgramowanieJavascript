@@ -2,11 +2,12 @@ const key = 'NoteApp'
 
 const ls = {
     getNotes: () => {
-        return JSON.parse(localStorage.getItem(key));
+        const ret = JSON.parse(localStorage.getItem(key))
+        return ret != null ? ret : []
     },
 
-    setNotes: (note) => {
-        return localStorage.setItem(key, JSON.stringify(note));
+    setNotes: (notes) => {
+        return localStorage.setItem(key, JSON.stringify(notes));
     },
 }
 

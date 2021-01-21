@@ -1,4 +1,4 @@
-import { TextField, Button } from '@material-ui/core'
+import { TextField, Button, Paper } from '@material-ui/core'
 import React, { useState } from 'react'
 
 
@@ -10,12 +10,10 @@ const NewNoteForm = (props) => {
     })
 
     const change = e => {
-        // this.props.onChange({ [e.target.name]: e.target.value });
         setNote({
             ...note,
             [e.target.name]: e.target.value
         });
-        console.log(note)
       };
 
     const submit = (e) => {
@@ -29,7 +27,7 @@ const NewNoteForm = (props) => {
     }
 
     return (
-        <div>
+        <Paper>
             <form>
                     <TextField
                         name="title"
@@ -45,9 +43,9 @@ const NewNoteForm = (props) => {
                         
                     />
                     <br />
-                    <Button label="Submit" onClick={e => submit(e)}>aaa</Button>
+                    <Button label="Submit" onClick={e => submit(e)}>Add Note</Button>
             </form>
-        </div>
+        </Paper>
     )
 }
 
